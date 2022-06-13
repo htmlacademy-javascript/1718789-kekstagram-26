@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Andrey Orlov](https://up.htmlacademy.ru/javascript/26/user/1718789).
-* Наставник: `Неизвестно`.
+* Наставник: [Artur Galimov](https://htmlacademy.ru/profile/id1237543).
 
 ---
 
