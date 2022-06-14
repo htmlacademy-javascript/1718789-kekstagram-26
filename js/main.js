@@ -1,7 +1,18 @@
-function getSum (a ,b) {
-  const description = 'Сумма двух чисел равна';
-  const sum = a + b;
-  return `${description} ${sum}`;
+//Получение случайного целого числа в заданном интервале, включительно.
+
+function getRandomInteger(min, max) {
+  if (min >= max) {
+    return null;
+  }
+  return Math.floor(min + Math.random() * (max + 1 - min));
 }
 
-getSum (1 ,2);
+
+//Функция для проверки максимальной длины строки
+
+function checkMaxLengthString(string, maxLength) {
+  return string.length <= maxLength;
+}
+
+getRandomInteger(1, 80);
+checkMaxLengthString('testString', 10);
