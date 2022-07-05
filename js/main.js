@@ -27,10 +27,10 @@ const TEXT_DESCRIPTION = [
   'Работа',
   'На природе.',
 ];
-const urlImages = `randomUrlImage`;
+const urlImages = 'randomUrlImage';
 
 for (let i = 1; i <= 25; i++) {
-  const randomUrlImage = `photos/i.jpg`;
+  const randomUrlImage = `photos/${i}.jpg`;
 }
 
 const checkMaxLengthString = (string, maxLength) => string.length <= maxLength;
@@ -51,12 +51,25 @@ const createComment = () => ({
   name: getRandomArrayElement(NAMES_OF_COMMENTATORS),
 });
 
-const createPhotoDescription = () => ({
-  id: getRandomInteger(1, 25),
-  url: getRandomArrayElement(urlImages),
+const createPhotoDescription = (id) => ({
+  id: id,
+  url: `photos/${id}.jpg`,
   description: getRandomArrayElement(TEXT_DESCRIPTION),
   likes: getRandomInteger(MIN_COUNT_LIKES, MAX_COUNT_LIKES),
-  comments: '',
+  comments: Array.from({length: getRandomInteger(1, 6)}, createComment),
 });
+
+const randomMasive = [];
+
+for (let i = 1; i <= 25; i++) {
+  const random = createPhotoDescription(i);
+  randomMasive.push(random);
+}
+
+console.log(randomMasive);
+
+
+
+console.log(createPhotoDescription())
 
 // const similarPhotoDescription = Array.from({length: PHOTO_COUNT}, createPhotoDescription);
