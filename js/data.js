@@ -45,9 +45,13 @@ const createPhotoDescription = (id) => ({
   comments: Array.from({length: getRandomInteger(1, 6)}, createComment),
 });
 
-const photoDescriptionMasive = [];
+const createPhotoDescriptionMassive = () => {
+  const photoDescriptionMasive = [];
+  for (let i = 1; i <= 25; i++) {
+    const randomPhotoDescription = createPhotoDescription(i);
+    photoDescriptionMasive.push(randomPhotoDescription);
+  }
+  return photoDescriptionMasive;
+};
 
-for (let i = 1; i <= 25; i++) {
-  const randomPhotoDescription = createPhotoDescription(i);
-  photoDescriptionMasive.push(randomPhotoDescription);
-}
+export { createPhotoDescriptionMassive };
