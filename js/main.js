@@ -1,1 +1,2 @@
-import { createPhotoDescriptionMassive } from './data.js';
+import './picture-rendering.js';
+
