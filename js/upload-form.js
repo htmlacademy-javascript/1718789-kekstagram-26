@@ -24,9 +24,7 @@ function cancelPhotoContainer() {
   photoEditContainer.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onPhotoEscKeydown);
-  uploadPhotoFile.value = '';
-  hashtagsText.value = '';
-  commentText.value = '';
+  uploadPhotoForm.reset();
 }
 cancelPhotoButton.addEventListener('click', cancelPhotoContainer);
 
