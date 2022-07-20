@@ -1,6 +1,8 @@
+import { isEscKey } from './util.js';
+
 const body = document.querySelector('body');
 const photoContainer = document.querySelector('.big-picture');
-const photoCloseButton = photoContainer.querySelector('#picture-cancel');
+const cancelPhotoButton = photoContainer.querySelector('#picture-cancel');
 const photoImg = photoContainer.querySelector('.big-picture__img img');
 const photoLikesCount = photoContainer.querySelector('.likes-count');
 const photoDescription = photoContainer.querySelector('.social__caption');
@@ -10,19 +12,20 @@ const commentContainer = photoContainer.querySelector('.social__comments');
 const commentItem = photoContainer.querySelector('.social__comment');
 const commentFragment = document.createDocumentFragment();
 
-const closePhoto = () => {
-  photoContainer.classList.add('hidden');
-  body.classList.remove('modal-open');
-  document.removeEventListener('keydown', photoCloseHandler);
+const onPhotoEscKeydown = (evt) => {
+  if (isEscKey(evt)) {
+    evt.preventDefault();
+    cancelPhotoContainer();
+  }
 };
 
-function photoCloseHandler(evt) {
-  if (evt.key === 'Escape') {
-    closePhoto();
-  }
+function cancelPhotoContainer () {
+  photoContainer.classList.add('hidden');
+  body.classList.remove('modal-open');
+  document.removeEventListener('keydown', onPhotoEscKeydown);
 }
 
-photoCloseButton.addEventListener('click', closePhoto);
+cancelPhotoButton.addEventListener('click', cancelPhotoContainer);
 
 const renderFullSizePhoto = ({ url, likes, description, comments }) => {
 
@@ -46,7 +49,7 @@ const renderFullSizePhoto = ({ url, likes, description, comments }) => {
   commentContainer.innerHTML = '';
   commentContainer.append(commentFragment);
 
-  document.addEventListener('keydown', photoCloseHandler);
+  document.addEventListener('keydown', onPhotoEscKeydown);
 };
 
 export { renderFullSizePhoto };
