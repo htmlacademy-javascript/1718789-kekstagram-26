@@ -1,4 +1,6 @@
 import { isEscKey } from './util.js';
+import { resetScaleValue } from './photo-scale.js';
+import { resetEffects } from './photo-effects.js';
 
 const MAX_COUNT_HASHTAGS = 5;
 const body = document.querySelector('body');
@@ -33,6 +35,8 @@ const onUploadFileChange = () => {
   photoEditContainer.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onPhotoEscKeydown);
+  resetScaleValue();
+  resetEffects();
 };
 uploadPhotoFile.addEventListener('change', onUploadFileChange);
 
