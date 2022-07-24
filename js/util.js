@@ -1,5 +1,4 @@
-const checkMaxLengthString = (string, maxLength) => string.length <= maxLength;
-checkMaxLengthString('testString', 10);
+const ALERT_SHOW_TIME = 3000;
 
 const getRandomInteger = (min, max) => {
   const minNumber = Math.min(Math.abs(min), Math.abs(max));
@@ -7,8 +6,34 @@ const getRandomInteger = (min, max) => {
   return Math.floor(minNumber + Math.random() * (maxNumber - minNumber + 1));
 };
 
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
-
 const isEscKey = (evt) => evt.key === 'Escape';
 
-export {getRandomArrayElement, getRandomInteger, checkMaxLengthString, isEscKey};
+const showAlert = (message) => {
+  const alertContainer = document.createElement('div');
+  alertContainer.className = 'alert';
+  const alertText = document.createElement('h2');
+  alertText.className = 'error__title';
+  alertText.textContent = message;
+  alertContainer.append(alertText);
+  document.body.append(alertContainer);
+  setTimeout(() => {
+    alertContainer.remove();
+  }, ALERT_SHOW_TIME);
+};
+
+const shuffleArray = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = getRandomInteger(0, i);
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};
+const debounce = (callback, timeoutDelay = 500) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+export { isEscKey, showAlert, shuffleArray, debounce };
