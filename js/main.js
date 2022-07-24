@@ -2,9 +2,14 @@ import { renderThumbnails } from './picture-rendering.js';
 
 import { getData } from './api.js';
 
-import { setUploadFormSubmit } from './upload-form.js';
+import { setUploadFormSubmit } from './submit-form.js';
 
-import { showError } from './util.js';
+import { initializeFilters } from './filters.js';
 
-getData(renderThumbnails, showError);
+getData((photos) => {
+  renderThumbnails(photos);
+  initializeFilters(photos);
+});
+
 setUploadFormSubmit();
+
