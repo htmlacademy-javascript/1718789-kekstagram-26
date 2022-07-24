@@ -1,7 +1,10 @@
-import { createPhotoDescriptionMassive } from './data.js';
-
 import { renderThumbnails } from './picture-rendering.js';
 
-import './upload-form.js';
+import { getData } from './api.js';
 
-renderThumbnails(createPhotoDescriptionMassive());
+import { setUploadFormSubmit } from './upload-form.js';
+
+import { showError } from './util.js';
+
+getData(renderThumbnails, showError);
+setUploadFormSubmit();

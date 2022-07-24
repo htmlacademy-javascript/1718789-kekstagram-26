@@ -1,3 +1,5 @@
+const ERROR_SHOW_TIME = 3000;
+
 const checkMaxLengthString = (string, maxLength) => string.length <= maxLength;
 checkMaxLengthString('testString', 10);
 
@@ -11,4 +13,15 @@ const getRandomArrayElement = (elements) => elements[getRandomInteger(0, element
 
 const isEscKey = (evt) => evt.key === 'Escape';
 
-export {getRandomArrayElement, getRandomInteger, checkMaxLengthString, isEscKey};
+const showError = () => {
+  const errorSection = document.createElement('section');
+  errorSection.className = 'error';
+  errorSection.insertAdjacentHTML('afterbegin',
+    '<div class="error__inner"><h2 class="error__title">Не удалось загрузить фотографии</h2><p>Попробуйте обновить страницу</p></div>');
+  document.body.append(errorSection);
+  setTimeout(() => {
+    errorSection.remove();
+  }, ERROR_SHOW_TIME);
+};
+
+export {getRandomArrayElement, getRandomInteger, checkMaxLengthString, isEscKey, showError};
